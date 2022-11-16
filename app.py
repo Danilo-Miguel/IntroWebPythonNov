@@ -7,5 +7,5 @@ app = Flask("Olá mundo")
 @app.route("/")
 
 def alunos():
-    return render_template("index.html")
+    return render_template("hello.html")
 
