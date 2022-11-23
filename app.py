@@ -21,5 +21,6 @@ def teardown_request(f):
 
 @app.route("/")
 def alunos():
-    return render_template("hello.html", nome="Marcos Vinicius")
+    nomeUsuario = ["Danilo", "Caio", "Guilherme", None, "Cassio", "Tadeu"]
+    return render_template("hello.html", nome=nomeUsuario)
 
