@@ -31,5 +31,5 @@ def exibir_posts():
             "texto": texto,
             "data_criacao": data_criacao
         })
-    return render_template("hello.html", post = posts)
+    return render_template("layout.html", post = posts)
 
