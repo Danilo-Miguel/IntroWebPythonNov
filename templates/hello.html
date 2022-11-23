@@ -6,16 +6,11 @@
 <title>Nossa primeira página</title>
 </head>
 <body>
-    {% for nomeIt in nome%}
-    <i><h1>Olá 
-        {%  if not nomeIt  %}
-            Visitante Desconhecido 
-        {% else %}
-            {{ nomeIt }}
-        {% endif %}    
-    </h1></i>
-    {% endfor %}
-
+    {%for posts in post%}
+        <h1>{{posts.titulo}}</h1>
+        <h2>{{posts.texto}}</h2>
+        <h3>{{posts.data_criacao}}</h3>
+    {%endfor%}
     <p>Este é um parágrafo</p>
     <p class="paragrafo1"> Este é um parágrafo com atributo</p> 
     <p> Este é um parágrafo com um elemento <strong>especial</strong></p> 

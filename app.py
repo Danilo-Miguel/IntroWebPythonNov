@@ -20,7 +20,15 @@ def teardown_request(f):
     g.bd.close()
 
 @app.route("/")
-def alunos():
-    nomeUsuario = ["Danilo", "Caio", "Guilherme", None, "Cassio", "Tadeu"]
-    return render_template("hello.html", nome=nomeUsuario)
+def exibir_posts():
+    sql  = "SELECT titulo, texto, data_criacao FROM posts ORDER BY id DESC" 
+    resultado = g.bd.execute(sql)
+
+    posts = [
+        {"titulo":"Meu titulo", "texto":"Primeiro texto","data_criacao":"23/11/2022"},
+        {"titulo":"Meu titulo 2", "texto":"Segundo texto","data_criacao":"24/11/2022"}
+    ]
+
+    
+    return render_template("hello.html", post = posts)
 
