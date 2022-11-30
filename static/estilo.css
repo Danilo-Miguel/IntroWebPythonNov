@@ -42,3 +42,25 @@ font-size: 1.2em;
     padding: 0.5em;
 
 }
+
+.inserir-post{
+    font-size: 0.9em;
+    border-bottom: 1px solid #ccc;
+}
+
+.inserir-post dl{
+    font-weight: bold;
+}
+
+.posts{
+    list-style: none; 
+    margin: 0;
+}
+
+.posts li{
+    margin: 0.8em 1.2em;
+}
+
+.posts li h2{
+    margin-left: -1em;
+}

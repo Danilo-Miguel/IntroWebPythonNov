@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g, request, session, flash, url_for, redirect
+from flask import Flask, render_template, g, request, session, flash, url_for, redirect, abort
 import sqlite3
 
 DATABASE = "banco.bd"
@@ -32,6 +32,20 @@ def exibir_posts():
             "data_criacao": data_criacao
         })
     return render_template("exibir_posts.html", post = posts)
+
+
+@app.route("/inserir", methods =["POST", "GET"])    
+def inserir():
+    if not session.get('logado'):
+        abort(401)
+    titulo = request.form.get('titulo')
+    texto = request.form.get('texto')
+    sql = "INSERT INTO posts (titulo, texto) VALUES (?, ?)"
+    g.bd.execute(sql, [titulo, texto])
+    g.bd.commit()
+    flash("Novo post inserido")
+    return redirect(url_for('exibir_posts'))
+
 
 @app.route("/login", methods = ["POST", "GET"])
 def login():
