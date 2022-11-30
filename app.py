@@ -31,5 +31,16 @@ def exibir_posts():
             "texto": texto,
             "data_criacao": data_criacao
         })
-    return render_template("layout.html", post = posts)
+    return render_template("exibir_posts.html", post = posts)
 
+@app.route("/login", methods = ["POST", "GET"])
+def login():
+    if(request.method == "POST"):
+        if request.form['username'] == "Ocean" and request.form['password'] == "ocean1234":
+            session['logado'] == True
+            flash("Usuario logado " + request.form['username'])
+    return render_template("login.html")    
+
+@app.route("/logout")
+def logout():
+    render_template("logout.html")
