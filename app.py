@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g
+from flask import Flask, render_template, g, request, session, flash, url_for, redirect
 import sqlite3
 
 DATABASE = "banco.bd"
@@ -35,12 +35,18 @@ def exibir_posts():
 
 @app.route("/login", methods = ["POST", "GET"])
 def login():
+    erro = None
     if(request.method == "POST"):
         if request.form['username'] == "Ocean" and request.form['password'] == "ocean1234":
-            session['logado'] == True
+            session['logado'] = True
             flash("Usuario logado " + request.form['username'])
-    return render_template("login.html")    
+            return redirect(url_for('exibir_posts'))
+        erro = "Usuário ou senha incorretos"    
+    return render_template("login.html", erro=erro)    
 
 @app.route("/logout")
 def logout():
-    render_template("logout.html")
+    session.pop('logado', None)    
+
+    flash("Logout Efetuado")
+    return redirect(url_for('exibir_posts'))
